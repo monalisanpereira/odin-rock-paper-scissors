@@ -16,8 +16,11 @@ const playerRock = document.querySelector('#player-rock');
 const playerPaper = document.querySelector('#player-paper');
 const playerScissors = document.querySelector('#player-scissors');
 const computerChoiceDisplay = document.querySelector('#computer-choice');
-const winsPerMatchOptions = document.querySelectorAll('.info__dropdown-option')
-const restartButton = document.querySelector('#restart-button')
+const winsPerMatchOptions = document.querySelectorAll('.info__dropdown-option');
+const restartButton = document.querySelector('#restart-button');
+const playerWinsDisplay = document.querySelector('#player-wins');
+const computerWinsDisplay = document.querySelector('#computer-wins');
+
 
 // ---------- FUNCTIONS ----------
 
@@ -90,6 +93,8 @@ function playGame(playerChoice) {
     }
   }
 
+  updateScore(result);
+
   // Check for end of match
 
   if (isGameOver()) {
@@ -117,7 +122,21 @@ function restartGame() {
   infoText.innerHTML = `Choose the number of wins per match and make your choice to begin the game!<br>Wins per match: ${winsPerMatch}`;
   playerChoiceDisplay.innerText = "";
   computerChoiceDisplay.innerText = "";
+  updateScore();
 }
+
+function updateScore(roundResult = null) {
+  if (roundResult == "win") {
+    playerWinsDisplay.textContent = playerWins;
+  } else if (roundResult == "lose") {
+    computerWinsDisplay.textContent = computerWins;
+  } else {
+    playerWinsDisplay.textContent = playerWins;
+    computerWinsDisplay.textContent = computerWins;
+  }
+}
+
+// ---------- EVENT LISTENERS ----------
 
 playerRock.addEventListener('click', function(){playGame("rock")});
 playerPaper.addEventListener('click', function(){playGame("paper")});
