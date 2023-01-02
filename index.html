@@ -24,15 +24,15 @@
         <div class="info__rounds-wrapper">
           <button class="info__dropdown-button info__buttons">Wins per Match</button>
           <div class="info__dropdown-content">
-            <span>1 win</span>
-            <span>2 wins</span>
-            <span>3 wins</span>
-            <span>4 wins</span>
-            <span>5 wins</span>
+            <span id="one-win" value="1" class="info__dropdown-option">1 win</span>
+            <span id="two-wins" value="2" class="info__dropdown-option">2 wins</span>
+            <span id="three-wins" value="3" class="info__dropdown-option">3 wins</span>
+            <span id="four-wins" value="4" class="info__dropdown-option">4 wins</span>
+            <span id="five-wins" value="5" class="info__dropdown-option">5 wins</span>
           </div>
         </div>
         <div class="info__restart-wrapper">
-          <button class="info__restart-button info__buttons">Restart</button>
+          <button id="restart-button" class="info__restart-button info__buttons">Restart</button>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="main-game__player-choice-box main-game__choice-box">
-            <span id="player-choice" class="main-game__player-choice main-game__choice">🖐️</span>
+            <span id="player-choice" class="main-game__player-choice main-game__choice"></span>
           </div>
         </div>
         <div class="main-game__player-label-wrapper main-game__label-wrapper">
@@ -69,7 +69,7 @@
       <div class="main-game__computer-box main-game__wrapper-box">
         <div class="main-game__computer-game  main-game__game">
           <div class="main-game__computer-choice-box main-game__choice-box">
-            <span id="computer-choice" class="main-game__computer-choice main-game__choice">🖐️</span>
+            <span id="computer-choice" class="main-game__computer-choice main-game__choice"></span>
           </div>
           <div class="main-game__computer-controls main-game__controls">
             <div class="main-game__computer-rock main-game__control">
@@ -83,10 +83,15 @@
             </div>
           </div>
         </div>
-        <div class="main-game__computer-label-wrapper main-game__label-wrapper">
-          <span class="main-game__computer-label">
-            COMPUTER
-          </span>
+        <div>
+          <div class="main-game__computer-label-wrapper main-game__label-wrapper">
+            <span class="main-game__computer-label">
+              COMPUTER
+            </span>
+            <span class="main-game__computer-wins">
+              0
+            </span>
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const POSSIBLE_MATCHES = [["rock", "scissors"],
 let playerWins = 0;
 let computerWins = 0;
 let round = 0;
-let winsPerMatch = 5;
+let winsPerMatch = 3;
 
 const infoText = document.querySelector('#info-text');
 const playerChoiceDisplay = document.querySelector('#player-choice');
@@ -16,6 +16,8 @@ const playerRock = document.querySelector('#player-rock');
 const playerPaper = document.querySelector('#player-paper');
 const playerScissors = document.querySelector('#player-scissors');
 const computerChoiceDisplay = document.querySelector('#computer-choice');
+const winsPerMatchOptions = document.querySelectorAll('.info__dropdown-option')
+const restartButton = document.querySelector('#restart-button')
 
 // ---------- FUNCTIONS ----------
 
@@ -88,11 +90,43 @@ function playGame(playerChoice) {
     }
   }
 
-  // Display result
+  // Check for end of match
 
-  infoText.textContent = roundMessage;
+  if (isGameOver()) {
+    if (playerWins > computerWins) {
+      roundMessage += `<br>End of match! Congratulation, you won!`;
+    } else {
+      roundMessage += `<br>End of match! You lost, good luck next time...`;
+    }
+  }
+
+  // Display result of round/match
+
+  infoText.innerHTML = roundMessage;
+}
+
+function changeWinsPerMatch(newWinsPerMatch) {
+  winsPerMatch = newWinsPerMatch;
+  restartGame();
+}
+
+function restartGame() {
+  playerWins = 0;
+  computerWins = 0;
+  round = 0;
+  infoText.innerHTML = `Choose the number of wins per match and make your choice to begin the game!<br>Wins per match: ${winsPerMatch}`;
+  playerChoiceDisplay.innerText = "";
+  computerChoiceDisplay.innerText = "";
 }
 
 playerRock.addEventListener('click', function(){playGame("rock")});
 playerPaper.addEventListener('click', function(){playGame("paper")});
 playerScissors.addEventListener('click', function(){playGame("scissors")});
+restartButton.addEventListener('click', restartGame);
+
+for (let i = 0; i < 5; i++) {
+  let numberOfWins = parseInt(winsPerMatchOptions[i].getAttribute("value"));
+  winsPerMatchOptions[i].addEventListener('click', function(){changeWinsPerMatch(numberOfWins)});
+}
+
+restartGame();

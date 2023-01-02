@@ -55,6 +55,11 @@ body {
   justify-content: center;
 }
 
+.info__text {
+  text-align: center;
+  line-height: 23px;
+}
+
 .info__buttons-wrapper {
   display: flex;
   justify-content: space-around;
