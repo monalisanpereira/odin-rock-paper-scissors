@@ -67,5 +67,3 @@ function game(options) {
     }
   } while (playerVictories < 3 && computerVictories < 3)
 }
-
-game(options);
