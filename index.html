@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./styles.css">
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <title>Rock, Paper, Scissors</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
 
     <div class="info">
       <div class="info__text-wrapper">
-        <span class="info__text">
+        <span id="info-text" class="info__text">
           Choose the number of wins per match and make your choice to begin the game!
         </span>
       </div>
@@ -41,18 +41,18 @@
       <div class="main-game__player-box main-game__wrapper-box">
         <div class="main-game__player-game main-game__game">
           <div class="main-game__player-controls main-game__controls">
-            <div class="main-game__player-rock main-game__control">
+            <div id="player-rock" class="main-game__control">
               <span>✊</span>
             </div>
-            <div class="main-game__player-paper main-game__control">
+            <div id="player-paper" class="main-game__control">
               <span>🖐️</span>
             </div>
-            <div class="main-game__player-scissors main-game__control">
+            <div id="player-scissors" class="main-game__control">
               <span>✌️</span>
             </div>
           </div>
           <div class="main-game__player-choice-box main-game__choice-box">
-            <span class="main-game__player-choice main-game__choice">🖐️</span>
+            <span id="player-choice" class="main-game__player-choice main-game__choice">🖐️</span>
           </div>
         </div>
         <div class="main-game__player-label-wrapper main-game__label-wrapper">
@@ -69,7 +69,7 @@
       <div class="main-game__computer-box main-game__wrapper-box">
         <div class="main-game__computer-game  main-game__game">
           <div class="main-game__computer-choice-box main-game__choice-box">
-            <span class="main-game__computer-choice main-game__choice">🖐️</span>
+            <span id="computer-choice" class="main-game__computer-choice main-game__choice">🖐️</span>
           </div>
           <div class="main-game__computer-controls main-game__controls">
             <div class="main-game__computer-rock main-game__control">

@@ -1,5 +1,6 @@
 :root {
   --dark-white: #d1d1d1;
+  --light-gray: #727272;
   --middle-gray--light: #5e5e5e;
   --middle-gray: #383838;
   --dark-gray: #242424;
@@ -92,6 +93,7 @@ body {
 
 .info__dropdown-content span:hover {
   background-color: var(--middle-gray--light);
+  cursor: pointer;
 }
 
 .info__rounds-wrapper:hover .info__dropdown-content {

@@ -1,69 +1,98 @@
-let options = ["rock", "paper", "scissors"];
+// ---------- VARIABLES AND ELEMENTS ----------
 
-function getPlayerChoice(options, round) {
-  let playerChoice;
-  do {
-    playerChoice = prompt(`Enter your choice for round ${round}:`);
-  } while (!(options.includes(playerChoice.toLowerCase())));
-  return playerChoice;
+const OPTIONS = ["rock", "paper", "scissors"];
+const OPTIONS_EMOJI = ["✊", "🖐️", "✌️"];
+const POSSIBLE_MATCHES = [["rock", "scissors"], 
+                       ["scissors", "paper"], 
+                       ["paper", "rock"]];
+let playerWins = 0;
+let computerWins = 0;
+let round = 0;
+let winsPerMatch = 5;
+
+const infoText = document.querySelector('#info-text');
+const playerChoiceDisplay = document.querySelector('#player-choice');
+const playerRock = document.querySelector('#player-rock');
+const playerPaper = document.querySelector('#player-paper');
+const playerScissors = document.querySelector('#player-scissors');
+const computerChoiceDisplay = document.querySelector('#computer-choice');
+
+// ---------- FUNCTIONS ----------
+
+function getComputerChoice() {
+  let index = Math.floor(Math.random() * OPTIONS.length);
+  return OPTIONS[index];
 }
 
-function getComputerChoice(options) {
-  let index = Math.floor(Math.random() * options.length);
-  return options[index];
-}
-
-function playRound(playerSelection, computerSelection) {
-
-  let playerChoice = playerSelection.toLowerCase();
-  let computerChoice = computerSelection.toLowerCase();
-  let winnerMatches = [["rock", "scissors"], 
-                        ["scissors", "paper"], 
-                        ["paper", "rock"]];
-  let win = ["win", playerChoice, computerChoice];
-  let lose = ["lose", computerChoice, playerChoice];
-  let result;
+function playRound(playerChoice, computerChoice) {
+  round++;
 
   if (playerChoice == computerChoice) {
-    return ["tie", playerChoice, computerChoice];
+    return "tie";
   }
 
-  for (let i = 0; i < winnerMatches.length; i++) {
-    if (playerChoice == winnerMatches[i][0] && computerChoice == winnerMatches[i][1]) {
-      result = win;
+  for (let i = 0; i < POSSIBLE_MATCHES.length; i++) {
+    if (playerChoice == POSSIBLE_MATCHES[i][0] && computerChoice == POSSIBLE_MATCHES[i][1]) {
+      playerWins++;
+      return "win";
+    } else if (playerChoice == POSSIBLE_MATCHES[i][1] && computerChoice == POSSIBLE_MATCHES[i][0]) {
+      computerWins++;
+      return "lose";
+    }
+  }
+}
+
+function getRoundMessage(round, result, playerChoice, computerChoice) {
+  let message;
+
+  switch (result) {
+    case "tie":
+      message = `Round ${round}: It's a tie!`;
       break;
-    } else if (playerChoice == winnerMatches[i][1] && computerChoice == winnerMatches[i][0]) {
-      result = lose;
+  
+    case "win":
+      message = `Round ${round}: You won! ${playerChoice[0].toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}!`;
       break;
+
+    case "lose":
+      message = `Round ${round}: You lost! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${playerChoice}!`;
+  }
+
+  return message;
+}
+
+function isGameOver() {
+  return playerWins == winsPerMatch || computerWins == winsPerMatch;
+}
+
+function playGame(playerChoice) {
+  if (isGameOver()) {
+    return;
+  }
+
+  let computerChoice = getComputerChoice();
+  let result = playRound(playerChoice, computerChoice);
+  let roundMessage = getRoundMessage(round, result, playerChoice, computerChoice);
+
+  // Display choices
+
+  for (let i = 0; i < OPTIONS.length; i++) {
+    if (playerChoice == OPTIONS[i]) {
+      playerChoiceDisplay.innerText = OPTIONS_EMOJI[i];
     }
   }
 
-  return result;
+  for (let i = 0; i < OPTIONS.length; i++) {
+    if (computerChoice == OPTIONS[i]) {
+      computerChoiceDisplay.innerText = OPTIONS_EMOJI[i];
+    }
+  }
+
+  // Display result
+
+  infoText.textContent = roundMessage;
 }
 
-function game(options) {
-  let round = 0;
-  let playerVictories = 0;
-  let computerVictories = 0;
-
-  do {
-    round++;
-
-    let roundResult = playRound(getPlayerChoice(options, round), getComputerChoice(options));
-    roundMessage = `You ${roundResult[0]}! ${roundResult[1][0].toUpperCase() + roundResult[1].slice(1).toLowerCase()} beats ${roundResult[2].toLowerCase()}!`;
-
-    if (roundResult[0] == "tie") {
-      roundMessage = "It's a tie!";
-    } else if (roundResult[0] == "win") {
-      playerVictories++;
-    } else {
-      computerVictories++;
-    }
-
-    console.log(`Round ${round}: ${roundMessage}`)
-
-    if (playerVictories == 3 || computerVictories == 3) {
-      console.log(`The end! Player ${playerVictories} x ${computerVictories} Computer`);
-    }
-  } while (playerVictories < 3 && computerVictories < 3)
-}
+playerRock.addEventListener('click', function(){playGame("rock")});
+playerPaper.addEventListener('click', function(){playGame("paper")});
+playerScissors.addEventListener('click', function(){playGame("scissors")});
