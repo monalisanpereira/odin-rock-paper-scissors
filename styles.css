@@ -38,6 +38,7 @@ body {
 .info {
   width: 1000px;
   max-width: 90vw;
+  margin-bottom: 30px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -100,6 +101,90 @@ body {
 .info__buttons:hover, .info__rounds-wrapper:hover .info__dropdown-button {
   background-color: var(--middle-gray--light);
 }
+
+/* ---------- MAIN GAME ---------- */
+
+.main-game {
+  display: flex;
+}
+
+.main-game__wrapper-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-game__game {
+  display: flex;
+}
+
+.main-game__controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 25px;
+}
+
+.main-game__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 115px;
+  max-width: 9vw;
+  height: 115px;
+  max-height: 9vw;
+  border: solid 3px var(--middle-gray);
+  border-radius: 10px;
+  font-size: 50px;
+}
+
+.main-game__control:hover {
+  background-color: var(--middle-gray);
+  cursor: pointer;
+}
+
+.main-game__choice-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  max-width: 30vw;
+  height: 400px;
+  max-height: 30vw;
+  border: solid 3px var(--middle-gray);
+  border-radius: 10px;
+  font-size: 200px;
+}
+
+.main-game__label-wrapper {
+  width: 100%;
+  display: flex;
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+.main-game__player-label-wrapper {
+  flex-direction: row-reverse;
+}
+
+.main-game__player-label {
+  margin-right: 20%;
+  flex-basis: 24%;
+}
+
+.main-game__computer-label {
+  margin-left: 24%;
+  flex-basis: 24%;
+}
+
+.main-game__versus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8vw;
+  font-size: 50px;
+}
+
+/* ---------- FOOTER ---------- */
 
 footer {
   display: flex;
