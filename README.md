@@ -8,4 +8,9 @@ A game of rock paper scissors played against the computer through the Javascript
 
 ## Skills
 
+* HTML5
+* CSS
 * Javascript
+* BEM Methodology
+
+Preview the project [here](https://monalisanpereira.github.io/odin-rock-paper-scissors/).
