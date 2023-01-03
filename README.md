@@ -4,7 +4,7 @@ One of the [projects](https://www.theodinproject.com/lessons/foundations-rock-pa
 
 ## Description
 
-A game of rock paper scissors played against the computer through the Javascript console.
+A simple game of rock paper scissors played against the computer through the browser.
 
 ## Skills
 
