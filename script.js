@@ -11,6 +11,7 @@ let round = 0;
 let winsPerMatch = 3;
 
 const infoText = document.querySelector('#info-text');
+const infoBox = document.querySelector('#info-box');
 const playerChoiceDisplay = document.querySelector('#player-choice');
 const playerRock = document.querySelector('#player-rock');
 const playerPaper = document.querySelector('#player-paper');
@@ -71,9 +72,8 @@ function isGameOver() {
 }
 
 function playGame(playerChoice) {
-  if (isGameOver()) {
-    return;
-  }
+
+  // changeAppearanceOnClick(this, 'control-click');
 
   let computerChoice = getComputerChoice();
   let result = playRound(playerChoice, computerChoice);
@@ -112,10 +112,13 @@ function playGame(playerChoice) {
 
 function changeWinsPerMatch(newWinsPerMatch) {
   winsPerMatch = newWinsPerMatch;
-  restartGame();
 }
 
-function restartGame() {
+function restartGame(element = null) {
+  if (element) {
+    console.log(element)
+    changeAppearanceOnClick(element, 'button-click');
+  }
   playerWins = 0;
   computerWins = 0;
   round = 0;
@@ -136,16 +139,41 @@ function updateScore(roundResult = null) {
   }
 }
 
+function changeAppearanceOnClick(element, className) {
+  element.classList.add(className);
+  setTimeout(function(element, className){element.classList.remove(className)}, 200, element, className);
+}
+
+function focusInfoBox() {
+  infoBox.classList.add('info__box--focus');
+  let className = 'info__box--focus'
+  setTimeout(function(infoBox, className){infoBox.classList.remove(className)}, 400, infoBox,className);
+}
+
+function handleControlClick(eventTarget, theThis, controlValue) {
+  if (isGameOver()) {
+    focusInfoBox();
+    return;
+  }
+  
+  if (eventTarget !== theThis) {
+    changeAppearanceOnClick(eventTarget.parentElement, 'control-click');
+  } else {
+    changeAppearanceOnClick(eventTarget, 'control-click');
+  }
+  playGame(controlValue);
+}
+
 // ---------- EVENT LISTENERS ----------
 
-playerRock.addEventListener('click', function(){playGame("rock")});
-playerPaper.addEventListener('click', function(){playGame("paper")});
-playerScissors.addEventListener('click', function(){playGame("scissors")});
-restartButton.addEventListener('click', restartGame);
+playerRock.addEventListener('click', function(e){handleControlClick(e.target, this, "rock")});
+playerPaper.addEventListener('click', function(e){handleControlClick(e.target, this, "paper")});
+playerScissors.addEventListener('click', function(e){handleControlClick(e.target, this, "scissors")});
+restartButton.addEventListener('click', function(e){restartGame(e.target)});
 
 for (let i = 0; i < 5; i++) {
   let numberOfWins = parseInt(winsPerMatchOptions[i].getAttribute("value"));
-  winsPerMatchOptions[i].addEventListener('click', function(){changeWinsPerMatch(numberOfWins)});
+  winsPerMatchOptions[i].addEventListener('click', function(e){changeWinsPerMatch(numberOfWins), restartGame(e.target)});
 }
 
 restartGame();

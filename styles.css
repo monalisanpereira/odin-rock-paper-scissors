@@ -1,12 +1,15 @@
 :root {
   --dark-white: #d1d1d1;
   --light-gray: #727272;
-  --middle-gray--light: #5e5e5e;
-  --middle-gray: #383838;
-  --dark-gray: #242424;
+  --middle-gray: #3a3a3a;
+  --dark-gray: #2d2d2d;
+  --darker-gray: #242424;
 }
 
 * {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   padding: 0;
   margin: 0;
   /* border: solid 1px red; */
@@ -18,7 +21,7 @@ html {
 }
 
 body {
-  background-color: var(--dark-gray);
+  background-color: var(--darker-gray);
 }
 
 .body__wrapper {
@@ -45,7 +48,7 @@ body {
   flex-direction: column;
 }
 
-.info__text-wrapper {
+.info__box {
   border: solid 3px var(--middle-gray);
   border-radius: 10px;
   height: 7vh;
@@ -53,6 +56,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.info__box--focus {
+  border-color: var(--light-gray) !important;
 }
 
 .info__text {
@@ -69,7 +76,7 @@ body {
 }
 
 .info__buttons {
-  background-color: var(--middle-gray);
+  background-color: var(--dark-gray);
   color: var(--dark-white);
   padding: 10px 15px;
   font-size: 16px;
@@ -85,7 +92,7 @@ body {
 .info__dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--middle-gray);
+  background-color: var(--dark-gray);
   width: 100%;
   /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   z-index: 1;
@@ -97,7 +104,7 @@ body {
 }
 
 .info__dropdown-content span:hover {
-  background-color: var(--middle-gray--light);
+  background-color: var(--middle-gray);
   cursor: pointer;
 }
 
@@ -106,7 +113,11 @@ body {
 }
 
 .info__buttons:hover, .info__rounds-wrapper:hover .info__dropdown-button {
-  background-color: var(--middle-gray--light);
+  background-color: var(--middle-gray);
+}
+
+.button-click, .button-click:hover {
+  background-color: var(--light-gray) !important;
 }
 
 /* ---------- MAIN GAME ---------- */
@@ -142,15 +153,16 @@ body {
   border: solid 3px var(--middle-gray);
   border-radius: 10px;
   font-size: 50px;
-
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
-.main-game__control:hover {
+.main-game__player-controls .main-game__control:hover {
   background-color: var(--middle-gray);
   cursor: pointer;
+}
+
+.control-click {
+  background-color: var(--light-gray) !important;
+  border-color: var(--light-gray);
 }
 
 .main-game__choice-box {
