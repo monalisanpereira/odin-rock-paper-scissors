@@ -1,0 +1,16 @@
+/* ---------- CUSTOM PROPERTIES ---------- */
+
+body.light-theme {
+  --text-color: #242424;
+  --clicked-content: #b1b1b1;
+  --deco-and-hover: #c8c8c8;
+  --clickable-content: #d2d2d2;
+  --background-color: #dedede;
+  --alert-info-box: #da4242;
+}
+
+/* ---------- LIGHT THEME RULES ---------- */
+
+body.light-theme .info__box--focus {
+  border-color: var(--alert-info-box) !important;
+}

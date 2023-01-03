@@ -10,6 +10,7 @@ let computerWins = 0;
 let round = 0;
 let winsPerMatch = 3;
 
+const themeToggleButton = document.querySelector('#theme-toggle__button');
 const infoText = document.querySelector('#info-text');
 const infoBox = document.querySelector('#info-box');
 const playerChoiceDisplay = document.querySelector('#player-choice');
@@ -99,7 +100,7 @@ function playGame(playerChoice) {
 
   if (isGameOver()) {
     if (playerWins > computerWins) {
-      roundMessage += `<br>End of match! Congratulation, you won!`;
+      roundMessage += `<br>End of match! Congratulations, you won!`;
     } else {
       roundMessage += `<br>End of match! You lost, good luck next time...`;
     }
@@ -166,6 +167,9 @@ function handleControlClick(eventTarget, theThis, controlValue) {
 
 // ---------- EVENT LISTENERS ----------
 
+themeToggleButton.addEventListener('change', ()=>{
+  document.body.classList.toggle('light-theme')
+})
 playerRock.addEventListener('click', function(e){handleControlClick(e.target, this, "rock")});
 playerPaper.addEventListener('click', function(e){handleControlClick(e.target, this, "paper")});
 playerScissors.addEventListener('click', function(e){handleControlClick(e.target, this, "scissors")});

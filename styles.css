@@ -1,10 +1,16 @@
-:root {
-  --dark-white: #d1d1d1;
-  --light-gray: #727272;
-  --middle-gray: #3a3a3a;
-  --dark-gray: #2d2d2d;
-  --darker-gray: #242424;
+@import "light-theme.css";
+
+/* ---------- CUSTOM PROPERTIES ---------- */
+
+body {
+  --text-color: #d1d1d1;
+  --clicked-content: #727272;
+  --deco-and-hover: #3a3a3a;
+  --clickable-content: #2d2d2d;
+  --background-color: #242424;
 }
+
+/* ---------- GLOBAL RULES ---------- */
 
 * {
   -webkit-user-select: none;
@@ -12,22 +18,65 @@
   user-select: none;
   padding: 0;
   margin: 0;
-  /* border: solid 1px red; */
-}
-
-html {
-  font-family: sans-serif;
-  color: var(--dark-white);
 }
 
 body {
-  background-color: var(--darker-gray);
+  font-family: sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: all 0.2s linear;
 }
 
 .body__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* ---------- THEME TOGGLE ---------- */
+
+.theme-toggle * {
+  box-sizing: border-box;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 25px 30px;
+}
+
+.theme-toggle__button {
+  opacity: 0;
+  position: absolute;
+}
+
+.theme-toggle__button-label {
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  padding: 5px;
+  background-color: var(--clickable-content);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.theme-toggle__ball {
+  width: 20px;
+  height: 20px;
+  background-color: var(--clicked-content);
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.theme-toggle__button:checked + .theme-toggle__button-label .theme-toggle__ball{
+  transform: translateX(21px);
 }
 
 /* ---------- TITLE ---------- */
@@ -49,7 +98,7 @@ body {
 }
 
 .info__box {
-  border: solid 3px var(--middle-gray);
+  border: solid 3px var(--deco-and-hover);
   border-radius: 10px;
   height: 7vh;
   width: 100%;
@@ -59,7 +108,7 @@ body {
 }
 
 .info__box--focus {
-  border-color: var(--light-gray) !important;
+  border-color: var(--clicked-content) !important;
 }
 
 .info__text {
@@ -76,8 +125,8 @@ body {
 }
 
 .info__buttons {
-  background-color: var(--dark-gray);
-  color: var(--dark-white);
+  background-color: var(--clickable-content);
+  color: var(--text-color);
   padding: 10px 15px;
   font-size: 16px;
   border: none;
@@ -92,9 +141,8 @@ body {
 .info__dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--dark-gray);
+  background-color: var(--clickable-content);
   width: 100%;
-  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   z-index: 1;
 }
 
@@ -104,7 +152,7 @@ body {
 }
 
 .info__dropdown-content span:hover {
-  background-color: var(--middle-gray);
+  background-color: var(--deco-and-hover);
   cursor: pointer;
 }
 
@@ -113,11 +161,11 @@ body {
 }
 
 .info__buttons:hover, .info__rounds-wrapper:hover .info__dropdown-button {
-  background-color: var(--middle-gray);
+  background-color: var(--deco-and-hover);
 }
 
 .button-click, .button-click:hover {
-  background-color: var(--light-gray) !important;
+  background-color: var(--clicked-content) !important;
 }
 
 /* ---------- MAIN GAME ---------- */
@@ -150,19 +198,19 @@ body {
   max-width: 9vw;
   height: 115px;
   max-height: 9vw;
-  border: solid 3px var(--middle-gray);
+  border: solid 3px var(--deco-and-hover);
   border-radius: 10px;
   font-size: 50px;
 }
 
 .main-game__player-controls .main-game__control:hover {
-  background-color: var(--middle-gray);
+  background-color: var(--deco-and-hover);
   cursor: pointer;
 }
 
 .control-click {
-  background-color: var(--light-gray) !important;
-  border-color: var(--light-gray);
+  background-color: var(--clicked-content) !important;
+  border-color: var(--clicked-content);
 }
 
 .main-game__choice-box {
@@ -173,7 +221,7 @@ body {
   max-width: 30vw;
   height: 400px;
   max-height: 30vw;
-  border: solid 3px var(--middle-gray);
+  border: solid 3px var(--deco-and-hover);
   border-radius: 10px;
   font-size: 200px;
 }
