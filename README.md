@@ -1,4 +1,4 @@
-# The Odin Project: Rock Paper Scissors (console)
+# The Odin Project: Rock Paper Scissors
 
 One of the [projects](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors) proposed throughout [The Odin Project](https://www.theodinproject.com/).
 
